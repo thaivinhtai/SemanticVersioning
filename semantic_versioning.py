@@ -1,3 +1,6 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+
 """Software versioning is the process of assigning unique version numbers to
 unique states of computer software. These numbers are generally assigned in
 ncreasing order and correspond to new developments in the software.
@@ -214,25 +217,11 @@ class Version:
 
     def __le__(self, other):
         """self <= other"""
-        try:
-            if self.major < other.major:
-                return True
-            if self.major > other.major:
-                return False
-            if self.minor < other.minor:
-                return True
-            if self.minor > other.minor:
-                return False
-            if self.patch < other.patch:
-                return True
-            if self.patch > other.patch:
-                return False
-            if self.major == other.major and self.minor == other.minor and\
-                    self.patch == other.patch:
-                return True
-            return False
-        except TypeError:
-            return print("Can not commpare.")
+        less = self.__lt__(other)
+        equal = self.__eq__(other)
+        if less or equal:
+            return True
+        return False
 
     def __eq__(self, other):
         """self == other"""
@@ -278,22 +267,8 @@ class Version:
 
     def __ge__(self, other):
         """self >= other"""
-        try:
-            if self.major > other.major:
-                return True
-            if self.major < other.major:
-                return False
-            if self.minor > other.minor:
-                return True
-            if self.minor < other.minor:
-                return False
-            if self.patch > other.patch:
-                return True
-            if self.patch < other.patch:
-                return False
-            if self.major == other.major and self.minor == other.minor and\
-                    self.patch == other.patch:
-                return True
-            return False
-        except TypeError:
-            return print("Can not commpare.")
+        greater = self.__gt__(other)
+        equal = self.__eq__(other)
+        if greater or equal:
+            return True
+        return False
