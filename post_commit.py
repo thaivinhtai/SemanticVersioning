@@ -4,7 +4,7 @@
 """Waypoint 7"""
 
 from os import (path, open, close, write, O_RDWR, O_CREAT,
-                fdopen, listdir, walk, getcwd)
+                fdopen, listdir, walk, getcwd, remove)
 import sys
 
 """
@@ -174,6 +174,7 @@ def increase_version():
         content[2] = content[2] + 1
         write_content = f"{content[0]}.{content[1]}.{content[2]}"
         return __add_content_file(version_filepath, write_content)
+    remove(version_filepath)
     return __add_content_file(version_filepath, "1.0.1")
 
 
