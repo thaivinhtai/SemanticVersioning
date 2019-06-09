@@ -1,0 +1,4 @@
+#!/bin/sh
+python3 .git/hooks/post_commit.py
+
+# store this file in .git/hooks/
